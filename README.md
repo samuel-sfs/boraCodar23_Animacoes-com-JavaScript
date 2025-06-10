@@ -1,1 +1,1 @@
-# boraCodar23_ANIMACOES-com-JavaScript
+# boraCodar23_Animações com JavaScript
