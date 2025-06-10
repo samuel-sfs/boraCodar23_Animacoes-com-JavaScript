@@ -134,7 +134,12 @@ form {
 
 .primary:hover {
     background-color: var(--color-produto-purple-light);
+    cursor: pointer;
 
+}
+
+.secundary:hover {
+    cursor: pointer;
 }
 
 .secundary {
