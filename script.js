@@ -52,4 +52,20 @@ function updateActiveStep() {
     formSteps[currentStep].classList.add('active');
 }
 
-function updateProgressStep() { }
+const progressSteps = document.querySelectorAll('.step-progress [data-step]')
+function updateProgressStep() {
+    progressSteps.forEach((step, idx) => {
+        step.classList.remove('active')
+        step.classList.remove('done');
+
+        if (idx < currentStep + 1) {
+            step.classList('active')
+        }
+
+        if (idx < currentStep) {
+            step.classList.add('done');
+        }
+
+    })
+
+}
