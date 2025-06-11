@@ -29,6 +29,9 @@ form.addEventListener('click', (e) => {
 
     const actions = {
         next() {
+            if (!isValidInput()) {
+                return;
+            }
             currentStep++;
         },
         prev() {
@@ -55,17 +58,22 @@ function updateActiveStep() {
 const progressSteps = document.querySelectorAll('.step-progress [data-step]')
 function updateProgressStep() {
     progressSteps.forEach((step, idx) => {
-        step.classList.remove('active')
+        step.classList.remove('active');
         step.classList.remove('done');
 
         if (idx < currentStep + 1) {
-            step.classList('active')
+            step.classList.add('active')
         }
 
         if (idx < currentStep) {
             step.classList.add('done');
         }
-
     })
+}
 
+function isValidInput() {
+    const currentFormStep = formSteps[currentStep]
+    const formFiels = [...currentFormStep.querySelectorAll('input'), ...currentFormStep.querySelectorAll('textarea')]
+
+    return formFiels.every((input) => input.reportValidity());
 }
