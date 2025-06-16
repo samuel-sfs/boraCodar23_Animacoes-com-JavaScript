@@ -43,7 +43,16 @@ form {
     padding: 3.2rem;
     border: 1px solid var(--color-base-gray-100);
     border-radius: .6rem;
+
+    overflow: hidden;
 }
+
+#orient {
+    font-size: .9rem;
+    color: darkgrey;
+
+}
+
 
 .step-progress {
     display: flex;
@@ -171,9 +180,35 @@ textarea::placeholder {
 }
 
 .form-step {
-    display: none;
+    display: block;
 }
 
 .form-step.active {
     display: block;
+}
+
+@keyframes appear {
+    0% {
+        scale: .7;
+        opacity: 0;
+    }
+}
+
+.form-step.active {
+    animation: appear 200ms 100ms ease-in-out backwards;
+}
+
+@keyframes slideout {
+    100% {
+        transform: translate(50%);
+        opacity: 0;
+    }
+}
+
+.form-step {
+    animation: slideout 200ms ease-in-out backwards;
+}
+
+.hide {
+    display: none;
 }
