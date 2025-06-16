@@ -21,7 +21,6 @@ inputTelefone.addEventListener('input', function (e) {
     e.target.value = formatado;
 });
 
-
 form.addEventListener('click', (e) => {
     if (!e.target.matches('[data-action]')) {
         return;
@@ -43,11 +42,17 @@ form.addEventListener('click', (e) => {
     actions[action]();
     updateActiveStep();
     updateProgressStep();
-
 });
 
-form.addEventListener('submit', (f) => {
-    f.preventDefault();
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+
+    for (let [key, value] of data) {
+        console.log(key, value);
+    }
+    alert(`Obrigado ${data.get('name')}!`)
 })
 
 function updateActiveStep() {
@@ -77,3 +82,15 @@ function isValidInput() {
 
     return formFiels.every((input) => input.reportValidity());
 }
+
+formSteps.forEach(formStep => {
+    function addHide() {
+        formStep.classList.add('hide')
+    }
+
+    formStep.addEventListener('animationend', () => {
+        addHide();
+        formSteps(currentStep).classList.remove('hide');
+    })
+
+})
